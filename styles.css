@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 16px;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 16px;
+    gap: 16px;
+    display: grid;
+}
+
+#search-container {
+    grid-column: 1 / -1;
+}
+
+#search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+#search-results {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#search-results li {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #f8f8f8;
+}
+
+#favourites-container {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0px;
+}
+
+h2 {
+    margin: 0;
+}
+
+#favourites-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#favourites-list li {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #f8f8f8;
+}
+
+.meals-container {
+    /* width: 100% !important; */
+    /* border: 1px solid red; */
+    margin: .1%;
+    padding: 0px;
+}
+
+#allMeals-container {
+    /* border: 1px solid green; */
+    margin: 0 auto;
+}
+
+#favourites-container {
+    /* border: 2px solid rgb(0, 9, 128); */
+}
+
+
+/* Styles for the list */
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+li img {
+    height: 100px;
+    margin-right: 10px;
+}
+
+
+/* Styles for the add/remove icons */
+
+.icon {
+    width: 20px;
+    height: 20px;
+    fill: #333;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.icon:hover {
+    fill: #666;
+}
+
+.card {
+    margin: 5px;
+}
+
+#categories-container {
+    border: 1px solid red;
+    margin: 0 auto
+}

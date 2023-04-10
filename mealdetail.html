@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Meal Detail Page</title>
+    <style>
+        /* Style for the page */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Meal name -->
+        <h1 id="mealName">Spaghetti Carbonara</h1>
+        <!-- Meal photo -->
+        <img id='favImg' src="https://www.themealdb.com/images/media/meals/xxrxux1503070723.jpg"
+            alt="Spaghetti Carbonara" />
+        <!-- Meal instructions -->
+        <h2>Instructions</h2>
+        <p id="instructions">
+            Heat the oil in a frying pan over a medium heat. Add the bacon and fry for 3-4 minutes, or until crisp and
+            golden-brown. In a bowl, whisk together the egg yolks, cream and Parmesan and season with black pepper. Cook
+            the spaghetti in a large pan of boiling
+            salted water until al dente. Reserve a cupful of the cooking water and drain the spaghetti. Add the
+            spaghetti to the frying pan with the bacon and toss to combine. Remove from the heat and stir through the
+            egg and cream mixture. Add a little
+            of the reserved cooking water, if needed, to loosen the sauce. Serve immediately, with extra Parmesan, if
+            desired.
+        </p>
+        <!-- Meal Description -->
+        <ul id="ingredients-list">
+
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        async function fetchMealById(idMeal) {
+
+            console.log(idMeal);
+
+            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("data .. ", data.meals[0]);
+                    let meal = data.meals[0];
+
+                    document.getElementById("mealName").innerHTML = meal.strMeal;
+                    document.getElementById("instructions").innerHTML = meal.strInstructions;
+                    document.getElementById('favImg').src = meal.strMealThumb;
+
+                    let ul = document.getElementById("ingredients-list");
+
+
+                    for (let i = 1; i <= 20; i++) {
+
+                        let strIng = "strIngredient" + i;
+                        let strM = "strMeasure" + i;
+
+                        //console.log("meal ...", meal[strIng]);
+
+                        if (meal[strIng] && meal[strM]) {
+                            let li = document.createElement("li");
+                            li.innerHTML = meal[strIng] + "  " + meal[strM];
+                            ul.appendChild(li);
+                        }
+                    }
+
+                }).catch(err => {
+                    console.log(err);
+                });
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        let idMeal = params.get('idMeal');
+
+        fetchMealById(idMeal);
+    </script>
+</body>
+
+</html>
